@@ -16,6 +16,10 @@ app.post('/chat', async (req, res) => {
             apiKey: OPENAI_API_KEY
           });
         const { message } = req.body;
+
+        const image = await openai.images.generate({ prompt: "A cute baby sea otter" });
+        console.log(image.data[0].url);
+
         const completion = openai.chat.completions.create({
             model: "gpt-4o-mini",
             store: true,
